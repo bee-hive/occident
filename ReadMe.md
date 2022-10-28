@@ -1,10 +1,10 @@
-# pfocr-database
-Jekyll Site and database for the Pathway Figure OCR project
+# occident-database
+Jekyll site for the Occident database
 
-Visit site at: https://pfocr.wikipathways.org/
+Visit site at: TBD
 
 ## Content
-Pathway figure content can be added as .md files to the [\_figures](https://github.com/wikipathways/pfocr-database/tree/main/_figures) directory. The top portion of the .md file is the Jekyll Front Matter, which defines metadata used to generate the site, organize content and generate search metadata optimized for search engines.
+Occident database is a website to display live cell imaging datasets and a portal for downloads.
 
 ## Development
 In order to rebuild the site locally, e.g. for testing, you'll need to:
