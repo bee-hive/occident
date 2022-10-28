@@ -9,7 +9,7 @@ layout: default
       <ul>
         {% for tr in site.trials %}
           {% if tr.cell-condition-1 == page.name %}
-              <li><a href="{{ tr.url }}">{{ tr.title }}</a> - {{ tr.description }}</li>
+              <li><a href="{{ site.baseurl }}{{ tr.url }}">{{ tr.title }}</a> - {{ tr.description }}</li>
           {% endif %}
         {% endfor %} 
       </ul>

@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-  <a class="page-title" href="{{site.url}}{{page.url}}">
+  <a class="page-title" href="{{site.url}}{{ site.baseurl }}{{page.url}}">
     <h1 id="title">{{ page.title }}</h1>
   </a>
 
@@ -24,7 +24,7 @@ layout: default
       options
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ page.url }}">Copy permalink</button>
+    <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ site.baseurl }}{{ page.url }}">Copy permalink</button>
     <a class="dropdown-item" href="{{ page.video-url }}" target="_blank">View movie at YouTube</a>
     <a class="dropdown-item" href="{{ page.images-url }}" target="_blank">Download images</a>
     </div> 
@@ -33,14 +33,14 @@ layout: default
   <h2 id="cell-type">Cell Type</h2>
   {% for ct in site.cell-types %}
   {% if page.cell-type-1 == ct.name %}
-  <a class="btn btn-sm btn-pill btn-organism" href="{{ct.url}}">{{ct.name}}</a>
+  <a class="btn btn-sm btn-pill btn-organism" href="{{ site.baseurl }}{{ct.url}}">{{ct.name}}</a>
   {% endif %}
   {% endfor %}
 
   <h2 id="condition">Conditions</h2>
   {% for cond in site.conditions %}
   {% if page.cell-condition-1 == cond.name %}
-  <a class="btn btn-sm btn-pill btn-annotation" href="{{cond.url}}">{{cond.name}}</a>
+  <a class="btn btn-sm btn-pill btn-annotation" href="{{ site.baseurl }}{{cond.url}}">{{cond.name}}</a>
   {% endif %}
   {% endfor %}
 

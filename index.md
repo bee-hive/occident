@@ -15,14 +15,14 @@ layout: home
                 </h2>
                 <a class="btn btn-sm btn-front my-1" href="/about.html">Read more</a>
                 <br /><br />
-              </div>
+              </div> 
             </div>
           </div>
           <div class="col-7 mx-auto gy-4 py-4 px-0" style="display:flex;">
             <div style="margin-left:39px">
               <p style="color: #6c757d;text-align: left">More details to come...</p>
               {% assign sample = site.trials | sample: 1 %}
-              <h3>Example page: <a href="{{ sample.url}}">{{ sample.title}}</a> </h3>
+              <h3>Example page: <a href="{{ site.baseurl }}{{ sample.url}}">{{ sample.title}}</a> </h3>
             </div>
           </div> 
         </div>
