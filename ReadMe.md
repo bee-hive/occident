@@ -1,7 +1,7 @@
 # occident-database
 Jekyll site for the Occident database
 
-Visit site at: TBD
+Visit site at: https://bee-hive.github.io/occident/
 
 ## Content
 Occident database is a website to display live cell imaging datasets and a portal for downloads.
