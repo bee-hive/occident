@@ -21,8 +21,8 @@
 title: Occident Database
 tagline: A repository for live cell imaging data 
 description: A website to display live cell imaging datasets and a portal for downloads.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://bee-hive.github.io/occident" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/occident" # the subpath of your site, e.g. /blog
+url: "https://bee-hive.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: 
 github_username: bee-hive
 discussion_forum: github.com/bee-hive/occident/discussions
