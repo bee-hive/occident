@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<a class="btn btn-sm btn-pill btn-annotation" style="float: right;" href="">Conditions</a>
+    <h1> {{ page.name }}</h1>
+    <p>{{ page.description }}</p>
+    <hr/><br/>
+    <!-- {% assign sorted_figures = site.trials | sort: "year" | reverse %} -->
+      <ul>
+        {% for tr in site.trials %}
+          {% if tr.cell-condition-1 == page.name %}
+              <li><a href="{{ tr.url }}">{{ tr.title }}</a> - {{ tr.description }}</li>
+          {% endif %}
+        {% endfor %} 
+      </ul>
+<br/><hr/>

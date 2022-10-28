@@ -1,0 +1,56 @@
+<footer class="site-footer h-card"> 
+  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+
+  <div class="wrapper">
+      <a href="https://github.com/bee-hive/occident/commits" target="_blank">
+        <img alt="GitHub last commit"
+          src="https://img.shields.io/github/last-commit/bee-hive/occident?label=updated">
+      </a>
+      <a href="https://github.com/bee-hive/occident/actions" target="_blank">
+        <img alt="GitHub pages build and deployment status" 
+        src="https://img.shields.io/github/workflow/status/bee-hive/occident/pages%20build%20and%20deployment">
+      </a>
+      <a href="https://github.com/bee-hive/occident/deployments" target="_blank">
+        <img alt="GitHub deployment state" 
+        src="https://img.shields.io/github/deployments/bee-hive/occident/github-pages">
+      </a>
+      <p style="margin-bottom: 5px;" />
+
+    <div class="row"> 
+
+      <div class="col">
+        <p style="width:300px; margin-bottom: 5px;">{{- site.description | escape -}}</p> 
+        <a href="https://creativecommons.org/share-your-work/public-domain/cc0/" target="_blank"><img height="25px" src="/assets/img/cc0.jpg"/></a>
+      </div>
+ 
+      <div class="col">
+        {%- include_cached social.html -%}
+      </div>
+  
+      <div class="col text-nowrap">
+        <ul class="contact-list">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/help.html">Help</a></li>
+          <li><a href="/download.html">Download</a></li>
+        </ul>
+      </div>
+
+      <div class="col text-nowrap"> 
+        <ul class="contact-list">
+          <li><a href="/tools.html">Tools</a></li>
+          <li><a href="/browse/organisms.html">Organisms</a></li>
+          <li><a href="/browse/annotations.html">Annotations</a></li>
+        </ul>
+      </div>
+
+      <div class="col text-nowrap">
+        <ul class="contact-list">
+          <li><a href="/stats.html">Statistics</a></li>
+          <li><a href="/cite.html">How to cite</a></li>
+          <li><a href="https://github.com/wikipathways/wikipathways-help/issues" target="_blank">Report a bug</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</footer>

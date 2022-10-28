@@ -1,0 +1,145 @@
+---
+layout: default
+---
+  <a class="page-title" href="{{site.url}}{{page.url}}">
+    <h1 id="title">{{ page.title }}</h1>
+  </a>
+
+  <div id="description" style="max-height:75px; overflow-y:hidden;margin-bottom: 20px;">
+    {{ page.description }}
+  </div>
+
+  <div id="video">
+    <iframe width="560" height="315" src="{{ page.video-url }}" title="YouTube video player" 
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+    </iframe>
+  </div> 
+
+  Total time: {{ page.total-time }}
+
+  <div class="dropdown" style="float:right; margin-top: -1px;">
+    <button class="badge badge-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      options
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ page.url }}">Copy permalink</button>
+    <a class="dropdown-item" href="{{ page.video-url }}" target="_blank">View movie at YouTube</a>
+    <a class="dropdown-item" href="{{ page.images-url }}" target="_blank">Download images</a>
+    </div> 
+  </div> 
+
+  <h2 id="cell-type">Cell Type</h2>
+  {% for ct in site.cell-types %}
+  {% if page.cell-type-1 == ct.name %}
+  <a class="btn btn-sm btn-pill btn-organism" href="{{ct.url}}">{{ct.name}}</a>
+  {% endif %}
+  {% endfor %}
+
+  <h2 id="condition">Conditions</h2>
+  {% for cond in site.conditions %}
+  {% if page.cell-condition-1 == cond.name %}
+  <a class="btn btn-sm btn-pill btn-annotation" href="{{cond.url}}">{{cond.name}}</a>
+  {% endif %}
+  {% endfor %}
+
+  <h2 id="details">Details</h2>
+  <ul>
+    <li>plate: {{page.plate}}</li>
+    <li>well: {{page.well}}</li>
+    <li>instrument: {{page.instrument}}</li>
+    <li>magnification: {{page.magnification}}</li>
+  </ul>
+
+
+    <h2 id="images">Images</h2>
+    {% assign this-trial = page.title %}
+    {% assign image-data=site.data[this-trial] %}
+        <table id="images-table"> 
+      <thead>
+        <th>{{this-trial}}</th>
+        <th>Channel</th>
+        <th>Time</th>
+      </thead>
+      <tbody>
+        {% for row in image-data %}
+        <tr>
+          <td>{{ row["file"] }}</td>
+          <td>{{ row["channel"] }}</td>
+          <td>{{ row["time"] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table> 
+    <input type="button" class="badge badge-secondary" id="tableMore" value="more rows" style="float: left; margin-top: -8px;">
+    <input type="button" class="badge badge-secondary" id="tableLess" value="fewer rows" style="float: left; margin-top: -8px;">
+    
+
+<script> 
+  var trs = $("#images-table tr");
+  var btnMore = $("#tableMore");
+  var btnLess = $("#tableLess");
+  var trsLen = trs.length;
+  var startIndex = 5;
+  var currentIndex = startIndex;
+  var addIndex = 40;
+  
+  function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+      return true;
+    else
+      return false;
+  }
+
+  trs.hide();
+  trs.slice(0, startIndex).show();
+  checkButton(trsLen,$("#images-table tr:visible").length, btnMore, btnLess);
+
+  btnMore.click(function (e) {
+    e.preventDefault();
+    $("#images-table tr").slice(currentIndex, currentIndex + addIndex).show();
+    currentIndex += addIndex;
+    checkButton(trsLen, $("#images-table tr:visible").length, btnMore, btnLess);
+  });
+
+  btnLess.click(function (e) {
+    e.preventDefault();
+    $("#images-table tr").slice(currentIndex - addIndex, currentIndex).hide();
+    currentIndex -= addIndex;
+    checkButton(trsLen, $("#images-table tr:visible").length, btnMore, btnLess);
+  });
+
+  function checkButton(trsLength, currentLength, btnM, btnL) {
+
+    if (currentLength >= trsLength) {
+      btnM.hide();
+    } else {
+      btnM.show();
+    }
+
+    if (trsLength > startIndex && currentLength > startIndex) {
+      btnL.show();
+    } else {
+      btnL.hide();
+    }
+
+  }
+
+  const copyBtn = document.querySelector('.copy-btn');
+  const toCopy = document.querySelector('.copy-btn').getAttribute('to-copy');
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(toCopy)
+      .then(() => {
+        toCopy.value = '';
+      })
+      .catch(err => {
+        console.log('Something went wrong', err);
+      })
+  });
+
+</script>
