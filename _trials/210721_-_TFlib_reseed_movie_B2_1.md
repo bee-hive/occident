@@ -1,7 +1,6 @@
 ---
-title: 210721_B2
+title: 210721 - TFlib reseed movie_B2_1
 description: "RASA2 knock-out in bulk T cells imaged over 3 days."
-file-prefix: "210721 - TFlib reseed movie_B2_1_"
 well: B2
 row: B
 col: 2
@@ -14,6 +13,6 @@ cell-count-1: 1500
 cell-condition-1: "RASA2 KO"
 cell-type-2: A375
 cell-count-2: 1500
-video-url: "https://www.youtube.com/embed/T7AB3vlUiZk"
-images-url: ""
+video-url:
+images-url:
 ---

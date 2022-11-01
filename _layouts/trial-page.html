@@ -7,26 +7,47 @@ layout: default
 
   <div id="description" style="max-height:75px; overflow-y:hidden;margin-bottom: 20px;">
     {{ page.description }}
+    <a href="https://github.com/bee-hive/occident/blob/main/{{ page.path }}"
+      target="_blank">
+        <span title="Edit description" style="color: #666; font-size: 0.8em;">
+          <i class="fa fa-pencil"></i>
+        </span>
+      </a>
   </div>
-
+ 
   <div id="video">
+    {% if page.video-url %}
     <iframe width="560" height="315" src="{{ page.video-url }}" title="YouTube video player" 
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
     </iframe>
+    Total time: {{ page.total-time }}
+    {% else %}
+    <p style="color: #666;">No video available 
+      <a href="https://github.com/bee-hive/occident/blob/main/{{ page.path }}"
+      target="_blank">
+        <span title="Edit video-url" style="color: #666; font-size: 0.8em;">
+          <i class="fa fa-pencil"></i>
+        </span>
+      </a></p>
+    {% endif %}
   </div> 
 
-  Total time: {{ page.total-time }}
 
-  <div class="dropdown" style="float:right; margin-top: -1px;">
+
+  <div class="dropdown">
     <button class="badge badge-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
       options
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ site.baseurl }}{{ page.url }}">Copy permalink</button>
+    {% if page.video-url %}
     <a class="dropdown-item" href="{{ page.video-url }}" target="_blank">View movie at YouTube</a>
+    {% endif %}
+    {% if page.images-url %}
     <a class="dropdown-item" href="{{ page.images-url }}" target="_blank">Download images</a>
+    {% endif %}
     </div> 
   </div> 
 
@@ -42,7 +63,7 @@ layout: default
   {% if page.cell-condition-1 == cond.name %}
   <a class="btn btn-sm btn-pill btn-annotation" href="{{ site.baseurl }}{{cond.url}}">{{cond.name}}</a>
   {% endif %}
-  {% endfor %}
+  {% endfor %} 
 
   <h2 id="details">Details</h2>
   <ul>
@@ -50,15 +71,15 @@ layout: default
     <li>well: {{page.well}}</li>
     <li>instrument: {{page.instrument}}</li>
     <li>magnification: {{page.magnification}}</li>
-  </ul>
+  </ul> 
 
 
     <h2 id="images">Images</h2>
-    {% assign this-trial = page.title %}
+    {% assign this-trial = page.title | replace: " ","_" %}
     {% assign image-data=site.data[this-trial] %}
         <table id="images-table"> 
       <thead>
-        <th>{{this-trial}}</th>
+        <th>File</th>
         <th>Channel</th>
         <th>Time</th>
       </thead>
@@ -71,7 +92,16 @@ layout: default
         </tr>
         {% endfor %}
       </tbody>
-    </table> 
+    </table>
+    <div class="dropdown" style="float:right; margin-top: -13px;">
+      <button class="badge badge-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDis" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        options
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonDis">
+      <a class="dropdown-item" href="https://gitcdn.link/cdn/bee-hive/occident/blob/main/download/{{ this-trial }}.tsv" target="_blank">Download TSV</a>
+      </div>
+    </div>
     <input type="button" class="badge badge-secondary" id="tableMore" value="more rows" style="float: left; margin-top: -8px;">
     <input type="button" class="badge badge-secondary" id="tableLess" value="fewer rows" style="float: left; margin-top: -8px;">
     
