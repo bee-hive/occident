@@ -20,8 +20,13 @@ layout: home
           </div>
           <div class="col-7 mx-auto gy-4 py-4 px-0" style="display:flex;">
             <div style="margin-left:39px">
-              {% assign sample = site.trials | sample: 1 %} 
-              <h3>Example page: <a href="{{ site.baseurl }}{{ sample.url}}">{{ sample.title}}</a> </h3>
+              <h3>Example pages: </h3>
+              <ul>
+                <li><a href="{{ site.baseurl }}/trials/210721_-_TFlib_reseed_movie_B2_1.html">210721 - TFlib reseed movie_B2_1</a></li>
+                <li><a href="{{ site.baseurl }}/trials/210721_-_TFlib_reseed_movie_C4_1.html">210721 - TFlib reseed movie_C4_1</a></li>
+                <li><a href="{{ site.baseurl }}/trials/210721_-_TFlib_reseed_movie_D6_1.html">210721 - TFlib reseed movie_D6_1</a></li>
+
+              </ul>
             </div>
           </div> 
               <p style="color: #6c757d;text-align: left">More details to come...</p>

@@ -31,6 +31,16 @@ layout: default
         </span>
       </a></p>
     {% endif %}
+    {% if page.images-url %}
+    {% else %}
+    <p style="color: #666;">No images available 
+      <a href="https://github.com/bee-hive/occident/blob/main/{{ page.path }}"
+      target="_blank">
+        <span title="Edit images-url" style="color: #666; font-size: 0.8em;">
+          <i class="fa fa-pencil"></i>
+        </span>
+      </a></p>
+    {% endif %}
   </div> 
 
 
@@ -53,14 +63,14 @@ layout: default
 
   <h2 id="cell-type">Cell Type</h2>
   {% for ct in site.cell-types %}
-  {% if page.cell-type-1 == ct.name %}
+  {% if page.cell_type_1 == ct.name %}
   <a class="btn btn-sm btn-pill btn-organism" href="{{ site.baseurl }}{{ct.url}}">{{ct.name}}</a>
   {% endif %}
   {% endfor %}
 
   <h2 id="condition">Conditions</h2>
   {% for cond in site.conditions %}
-  {% if page.cell-condition-1 == cond.name %}
+  {% if page.cell_condition_1 == cond.name %}
   <a class="btn btn-sm btn-pill btn-annotation" href="{{ site.baseurl }}{{cond.url}}">{{cond.name}}</a>
   {% endif %}
   {% endfor %} 
@@ -99,7 +109,7 @@ layout: default
         options
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonDis">
-      <a class="dropdown-item" href="https://gitcdn.link/cdn/bee-hive/occident/blob/main/download/{{ this-trial }}.tsv" target="_blank">Download TSV</a>
+      <a class="dropdown-item" href="https://raw.githubusercontent.com/bee-hive/occident/main/_data/{{ this-trial }}.tsv" target="_blank">Download TSV</a>
       </div>
     </div>
     <input type="button" class="badge badge-secondary" id="tableMore" value="more rows" style="float: left; margin-top: -8px;">

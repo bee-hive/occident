@@ -8,7 +8,7 @@ layout: default
     <!-- {% assign sorted_figures = site.trials | sort: "year" | reverse %} -->
       <ul>
         {% for tr in site.trials %}
-          {% if tr.cell-type-1 == page.name %}
+          {% if tr.cell_type_1 == page.name %}
               <li><a href="{{ site.baseurl }}{{ tr.url }}">{{ tr.title }}</a> - {{ tr.description }}</li>
           {% endif %}
         {% endfor %}
