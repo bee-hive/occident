@@ -16,12 +16,12 @@ layout: default
   </div>
  
   <div id="video">
-    {% if page.video-url %}
-    <iframe width="560" height="315" src="{{ page.video-url }}" title="YouTube video player" 
+    {% if page.video_url != "paste link here" %}
+    <iframe width="560" height="315" src="{{ page.video_url }}" title="YouTube video player" 
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
     </iframe>
-    Total time: {{ page.total-time }}
+    <br/>Total time: {{ page.total_time }}
     {% else %}
     <p style="color: #666;">No video available 
       <a href="https://github.com/bee-hive/occident/blob/main/{{ page.path }}"
@@ -31,7 +31,7 @@ layout: default
         </span>
       </a></p>
     {% endif %}
-    {% if page.images-url %}
+    {% if page.images_url != "paste link here" %}
     {% else %}
     <p style="color: #666;">No images available 
       <a href="https://github.com/bee-hive/occident/blob/main/{{ page.path }}"
@@ -39,7 +39,7 @@ layout: default
         <span title="Edit images-url" style="color: #666; font-size: 0.8em;">
           <i class="fa fa-pencil"></i>
         </span>
-      </a></p>
+      </a></p> 
     {% endif %}
   </div> 
 
@@ -52,11 +52,11 @@ layout: default
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ site.baseurl }}{{ page.url }}">Copy permalink</button>
-    {% if page.video-url %}
-    <a class="dropdown-item" href="{{ page.video-url }}" target="_blank">View movie at YouTube</a>
+    {% if page.video_url != "paste link here" %}
+    <a class="dropdown-item" href="{{ page.video_url }}" target="_blank">View movie at YouTube</a>
     {% endif %}
-    {% if page.images-url %}
-    <a class="dropdown-item" href="{{ page.images-url }}" target="_blank">Download images</a>
+    {% if page.images_url != "paste link here" %}
+    <a class="dropdown-item" href="{{ page.images_url }}" target="_blank">Download images</a>
     {% endif %}
     </div> 
   </div> 
