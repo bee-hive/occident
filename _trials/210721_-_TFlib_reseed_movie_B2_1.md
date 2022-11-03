@@ -13,6 +13,6 @@ cell_count_1: 1500
 cell_condition_1: RASA2 KO - reseed
 cell_type_2: A375
 cell_count_2: 1500
-video_url: paste link here
+video_url: https://www.youtube.com/watch?v=bcUQMG3kg-k
 images_url: paste link here
 ---
