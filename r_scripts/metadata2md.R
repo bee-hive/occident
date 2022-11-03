@@ -42,7 +42,7 @@ for(meta.f in meta.files){
                      'cell_condition_1' = cleanName(meta.t[1,]$cell.Condition.1),
                      'cell_type_2' = cleanName(meta.t[1,]$cell.Type.2),
                      'cell_count_2' = meta.t[1,]$cell.Count.2,
-                     'video_url' = "paste link here",
+                     'youtube_id' = "paste ID here",
                      'images_url' = "paste link here"
                      )
     con = file(file.path("../_trials",md.fn), "w")
