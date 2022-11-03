@@ -16,8 +16,8 @@ layout: default
   </div>
  
   <div id="video">
-    {% if page.video_url != "paste link here" %}
-    <iframe width="560" height="315" src="{{ page.video_url }}" title="YouTube video player" 
+    {% if page.youtube_id != "paste ID here" %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtube_id }}" title="YouTube video player" 
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
     </iframe>
@@ -26,7 +26,7 @@ layout: default
     <p style="color: #666;">No video available 
       <a href="https://github.com/bee-hive/occident/blob/main/{{ page.path }}"
       target="_blank">
-        <span title="Edit video-url" style="color: #666; font-size: 0.8em;">
+        <span title="Edit youtube_id" style="color: #666; font-size: 0.8em;">
           <i class="fa fa-pencil"></i>
         </span>
       </a></p>
@@ -52,8 +52,8 @@ layout: default
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ site.baseurl }}{{ page.url }}">Copy permalink</button>
-    {% if page.video_url != "paste link here" %}
-    <a class="dropdown-item" href="{{ page.video_url }}" target="_blank">View movie at YouTube</a>
+    {% if page.youtube_id != "paste ID here" %}
+    <a class="dropdown-item" href="https://www.youtube.com/watch?v={{ page.youtube_id }}" target="_blank">View movie at YouTube</a>
     {% endif %}
     {% if page.images_url != "paste link here" %}
     <a class="dropdown-item" href="{{ page.images_url }}" target="_blank">Download images</a>

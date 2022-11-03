@@ -13,6 +13,6 @@ cell_count_1: 1500
 cell_condition_1: Knock-In Library test - reseed
 cell_type_2: A375
 cell_count_2: 1500
-video_url: paste link here
+youtube_id: paste ID here
 images_url: paste link here
 ---
