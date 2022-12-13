@@ -11,9 +11,9 @@ A [template TSV file](TEMPLATE.tsv) is included in this folder. Each of the colu
 ### Required columns
 - `lab` -- The name of the lab responsible for the image data collection.
 - `institution` -- The name of the home institution for the responsible lab.
-- title` -- A title for the image collection. ***MUST BE UNIQUE***
+- `title` -- A title for the image collection. ***MUST BE UNIQUE***
 - `description` -- An overall description for the image collection.
-- 'instrument` -- The instrument that collected the image data, e.g., "Incucyte"
+- `instrument` -- The instrument that collected the image data, e.g., "Incucyte"
 - `magnification` -- The magnification setting for the images, e.g., "4x"
 - `channels` -- A comma-separated list of channels collected, e.g., "phase, red"
 - `plate_type` -- The platform used in the data collection, e.g., "96 well"
