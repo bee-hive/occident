@@ -69,14 +69,19 @@ exclude:
 defaults:
   - scope:
       path: ""
-      type: "cell-types"
+      type: "labs"
     values:
-      layout: "cell-type-page"
+      layout: "lab-page"
   - scope:
       path: ""
-      type: "conditions"
+      type: "institutions"
     values:
-      layout: "condition-page"
+      layout: "institution-page"
+  - scope:
+      path: ""
+      type: "instruments"
+    values:
+      layout: "instrument-page"
   - scope:
       path: ""
       type: "trials"
@@ -90,9 +95,11 @@ defaults:
 
 # Custom collections
 collections:
-  cell-types:
+  labs:
     output: true
-  conditions:
+  institutions:
+    output: true
+  instruments:
     output: true
   trials:
     output: true

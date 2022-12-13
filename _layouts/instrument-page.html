@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<a class="btn btn-sm btn-pill btn-purple" style="float: right;" href="{{ site.baseurl }}/instruments.html">Instruments</a>
+    <h1> {{ page.name }}</h1>
+    <p>{{ page.description }}
+      <a href="https://github.com/bee-hive/occident/edit/main/{{ page.path }}"
+      target="_blank">
+        <span title="Edit description" style="color: #666; font-size: 0.8em;">
+          <i class="fa fa-pencil"></i>
+        </span>
+      </a>
+    </p>
+    <hr/><br/>
+    <!-- {% assign sorted_figures = site.trials | sort: "year" | reverse %} -->
+      <ul>
+        {% for tr in site.trials %}
+          {% if tr.instrument == page.name %}
+              <li><a href="{{ site.baseurl }}{{ tr.url }}">{{ tr.title }}</a> - {{ tr.description }}</li>
+          {% endif %}
+        {% endfor %} 
+      </ul>
+<br/><hr/> 

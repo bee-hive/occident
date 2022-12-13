@@ -16,8 +16,13 @@ layout: default
   </div>
  
   <div id="video">
-    {% if page.youtube_id != "paste ID here" %}
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtube_id }}" title="YouTube video player" 
+    {% if page.youtube_ids != "paste ID here" %}
+    {% if page.youtube_ids.first %}
+      {% assign yt = page.youtube_ids.first %}
+    {% else %}
+      {% assign yt = page.youtube_ids %}
+    {% endif %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ yt }}" title="YouTube video player" 
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
     </iframe>
@@ -31,7 +36,7 @@ layout: default
         </span>
       </a></p>
     {% endif %}
-    {% if page.images_url != "paste link here" %}
+    {% if page.image_urls != "paste link here" %}
     {% else %}
     <p style="color: #666;">No images available 
       <a href="https://github.com/bee-hive/occident/edit/main/{{ page.path }}"
@@ -52,79 +57,78 @@ layout: default
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <button class="dropdown-item copy-btn" type="button" to-copy="{{ site.url }}{{ site.baseurl }}{{ page.url }}">Copy permalink</button>
-    {% if page.youtube_id != "paste ID here" %}
-    <a class="dropdown-item" href="https://www.youtube.com/watch?v={{ page.youtube_id }}" target="_blank">View movie at YouTube</a>
+    {% if page.youtube_ids != "paste ID here" %}
+      {% if page.youtube_ids.first %}
+        {% for yt in page.youtube_id %}
+          <a class="dropdown-item" href="https://www.youtube.com/watch?v={{ yt }}" target="_blank">View movie at YouTube</a>
+        {% endfor %}
+      {% else %}
+      <a class="dropdown-item" href="https://www.youtube.com/watch?v={{ page.youtube_ids }}" target="_blank">View movie at YouTube</a>
+      {% endif %}
     {% endif %}
-    {% if page.images_url != "paste link here" %}
-    <a class="dropdown-item" href="{{ page.images_url }}" target="_blank">Download images</a>
+    {% if page.image_urls != "paste link here" %}
+      {% if page.youtube_ids.first %}
+        {% for im in page.image_urls %}
+          <a class="dropdown-item" href="{{ im }}" target="_blank">Download images</a>
+        {% endfor %}
+      {% else %}
+        <a class="dropdown-item" href="{{ page.image_urls }}" target="_blank">Download images</a>
+      {% endif %}
     {% endif %}
     </div> 
   </div> 
 
-  <h2 id="cell-type">Cell Type</h2>
-  {% for ct in site.cell-types %}
-  {% if page.cell_type_1 == ct.name %}
-  <a class="btn btn-sm btn-pill btn-organism" href="{{ site.baseurl }}{{ct.url}}">{{ct.name}}</a>
-  {% endif %}
+  <h2 id="lab">Lab</h2>
+  {% for ct in site.labs %}
+    {% if page.lab == ct.name %}
+      <a class="btn btn-sm btn-pill btn-blue" href="{{ site.baseurl }}{{ct.url}}">{{ct.name}}</a>
+    {% endif %}
   {% endfor %}
 
-  <h2 id="condition">Conditions</h2>
-  {% for cond in site.conditions %}
-  {% if page.cell_condition_1 == cond.name %}
-  <a class="btn btn-sm btn-pill btn-annotation" href="{{ site.baseurl }}{{cond.url}}">{{cond.name}}</a>
-  {% endif %}
+  <h2 id="institution">Institution</h2>
+  {% for ct in site.institutions %}
+    {% if page.institution == ct.name %}
+      <a class="btn btn-sm btn-pill btn-green" href="{{ site.baseurl }}{{ct.url}}">{{ct.name}}</a>
+    {% endif %}
+  {% endfor %}
+
+  <h2 id="instrument">Instrument</h2>
+  {% for ct in site.instruments %}
+    {% if page.instrument == ct.name %}
+      <a class="btn btn-sm btn-pill btn-purple" href="{{ site.baseurl }}{{ct.url}}">{{ct.name}}</a>
+    {% endif %}
   {% endfor %} 
 
   <h2 id="details">Details</h2>
   <ul>
-    <li>plate: {{page.plate}}</li>
-    <li>well: {{page.well}}</li>
-    <li>instrument: {{page.instrument}}</li>
-    <li>magnification: {{page.magnification}}</li>
+    <li><b>magnification</b>: {{page.magnification}}</li>
+    {% if page.channels.first %}
+      <li><b>channels</b>: {{page.channels | array_to_sentence_string}}</li>
+    {% else %}
+      <li><b>channels</b>: {{page.channels}}</li>
+    {% endif %}
+    <li><b>plate type</b>: {{page.plate_type}}</li>
+    <li><b>well</b>: {{page.row}}-{{page.column}}</li>
+    <li><b>total time</b>: {{page.total_time}}</li>
+    <li><b>frequency</b>: {{page.frequency}}</li>
+    <li><b>image count</b>: {{page.image_count}}</li>
+    <li><b>date</b>: {{page.date | date: '%d %B %Y'}}</li>
+    {% if page.cell_types.first %}
+    <li><b>cell types</b>: {{page.cell_types | array_to_sentence_string}}</li>
+    {% else %}
+    <li><b>cell types</b>: {{page.cell_types }}</li>
+    {% endif %}
+    <li><b>cell count</b>: {{page.cell_count}}</li>
+    {% if page.cell_conditions.first %}
+      <li><b>cell conditions</b>: {{page.cell_conditions | array_to_sentence_string}}</li>
+    {% else %}
+      <li><b>cell conditions</b>: {{page.cell_conditions}}</li>
+    {% endif %}
+    <li><b>comments</b>: {{page.comments}}</li>
   </ul> 
 
 
-    <h2 id="images">Images</h2>
-    {% assign this-trial = page.title | replace: " ","_" %}
-    {% assign image-data=site.data[this-trial] %}
-        <table id="images-table"> 
-      <thead>
-        <th>File</th>
-        <th>Channel</th>
-        <th>Time</th>
-      </thead>
-      <tbody>
-        {% for row in image-data %}
-        <tr>
-          <td>{{ row["file"] }}</td>
-          <td>{{ row["channel"] }}</td>
-          <td>{{ row["time"] }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div class="dropdown" style="float:right; margin-top: -13px;">
-      <button class="badge badge-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDis" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        options
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonDis">
-      <a class="dropdown-item" href="https://raw.githubusercontent.com/bee-hive/occident/main/_data/{{ this-trial }}.tsv" target="_blank">Download TSV</a>
-      </div>
-    </div>
-    <input type="button" class="badge badge-secondary" id="tableMore" value="more rows" style="float: left; margin-top: -8px;">
-    <input type="button" class="badge badge-secondary" id="tableLess" value="fewer rows" style="float: left; margin-top: -8px;">
-    
-
 <script> 
-  var trs = $("#images-table tr");
-  var btnMore = $("#tableMore");
-  var btnLess = $("#tableLess");
-  var trsLen = trs.length;
-  var startIndex = 5;
-  var currentIndex = startIndex;
-  var addIndex = 40;
-  
   function UrlExists(url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
@@ -133,40 +137,6 @@ layout: default
       return true;
     else
       return false;
-  }
-
-  trs.hide();
-  trs.slice(0, startIndex).show();
-  checkButton(trsLen,$("#images-table tr:visible").length, btnMore, btnLess);
-
-  btnMore.click(function (e) {
-    e.preventDefault();
-    $("#images-table tr").slice(currentIndex, currentIndex + addIndex).show();
-    currentIndex += addIndex;
-    checkButton(trsLen, $("#images-table tr:visible").length, btnMore, btnLess);
-  });
-
-  btnLess.click(function (e) {
-    e.preventDefault();
-    $("#images-table tr").slice(currentIndex - addIndex, currentIndex).hide();
-    currentIndex -= addIndex;
-    checkButton(trsLen, $("#images-table tr:visible").length, btnMore, btnLess);
-  });
-
-  function checkButton(trsLength, currentLength, btnM, btnL) {
-
-    if (currentLength >= trsLength) {
-      btnM.hide();
-    } else {
-      btnM.show();
-    }
-
-    if (trsLength > startIndex && currentLength > startIndex) {
-      btnL.show();
-    } else {
-      btnL.hide();
-    }
-
   }
 
   const copyBtn = document.querySelector('.copy-btn');

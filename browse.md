@@ -2,8 +2,9 @@
 layout: default
 ---
 <h2>Browse by</h2>
-<a class="btn btn-sm btn-pill btn-organism" href="{{ site.baseurl }}/cell-types.html">Cell Types</a>
-<a class="btn btn-sm btn-pill btn-annotation" href="{{ site.baseurl }}/conditions.html">Conditions</a>
+<a class="btn btn-sm btn-pill btn-blue" href="{{ site.baseurl }}/labs.html">Labs</a>
+<a class="btn btn-sm btn-pill btn-green" href="{{ site.baseurl }}/institutions.html">Institutions</a>
+<a class="btn btn-sm btn-pill btn-purple" href="{{ site.baseurl }}/instruments.html">Instruments</a>
 <br/>
 <h2>Table of Contents</h2>
 <ul>

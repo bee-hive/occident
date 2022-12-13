@@ -14,7 +14,7 @@ title: Home
               <div class="container px-0">
                 <h2 style="font-family:Arial; line-height:1.4"><b>Occident Database</b> is a website to display live cell imaging datasets and a portal for downloads.
                 </h2>
-                <a class="btn btn-sm btn-front my-1" href="/about.html">Read more</a>
+                <a class="btn btn-sm btn-front my-1" href="{{ site.baseurl }}/about.html">Read more</a>
                 <br /><br />
               </div> 
             </div>
@@ -23,9 +23,9 @@ title: Home
             <div style="margin-left:39px">
               <h3>Example pages: </h3>
               <ul>
-                <li><a href="{{ site.baseurl }}/trials/210721_-_TFlib_reseed_movie_B2_1.html">210721 - TFlib reseed movie_B2_1</a></li>
-                <li><a href="{{ site.baseurl }}/trials/210721_-_TFlib_reseed_movie_C4_1.html">210721 - TFlib reseed movie_C4_1</a></li>
-                <li><a href="{{ site.baseurl }}/trials/210721_-_TFlib_reseed_movie_D6_1.html">210721 - TFlib reseed movie_D6_1</a></li>
+                <li><a href="{{ site.baseurl }}/trials/TFlib_reseed_movie_B2_Marson_2021-07-21.html">210721 - TFlib reseed movie_B2_1</a></li>
+                <li><a href="{{ site.baseurl }}/trials/TFlib_reseed_movie_C4_Marson_2021-07-21.html">210721 - TFlib reseed movie_C4_1</a></li>
+                <li><a href="{{ site.baseurl }}/trials/TFlib_reseed_movie_D6_Marson_2021-07-21.html">210721 - TFlib reseed movie_D6_1</a></li>
 
               </ul>
             </div>
@@ -42,4 +42,3 @@ title: Home
     {%- include_cached thanks.html -%}
   </div>
 </div>
-
