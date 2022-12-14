@@ -50,13 +50,21 @@ for(meta.f in meta.files){
   if (!reject.flag) {
     for(t in 1:nrow(meta)){
       #TRIALS MD
-      md <- meta[t,] %>%
-        dplyr::mutate(date = as.character(as.Date(date, "%m/%d/%y"))) %>%
-        dplyr::mutate(channels = ifelse(channels != "", strsplit(channels, ","),"")) %>%
-        dplyr::mutate(image_urls = ifelse(image_urls != "", strsplit(image_urls, ",\\s*"),"paste link here")) %>%
-        dplyr::mutate(youtube_ids = ifelse(youtube_ids != "", strsplit(youtube_ids, ",\\s*"),"paste ID here")) %>%
-        dplyr::mutate(cell_conditions = ifelse(cell_conditions != "", strsplit(cell_conditions, ",\\s*"),"")) %>%
-        dplyr::mutate(cell_types = ifelse(cell_types != "", strsplit(cell_types, ",\\s*"),""))
+      md <- as.list (
+        meta[t,] %>%
+          dplyr::mutate(date = as.character(as.Date(date, "%m/%d/%y"))) %>%
+          dplyr::mutate(channels = ifelse(channels != "", strsplit(channels, ",\\s*"),"")) %>%
+          dplyr::mutate(image_urls = ifelse(image_urls != "", strsplit(image_urls, ",\\s*"),"paste link here")) %>%
+          dplyr::mutate(youtube_ids = ifelse(youtube_ids != "", strsplit(youtube_ids, ",\\s*"),"paste ID here")) %>%
+          dplyr::mutate(cell_conditions = ifelse(cell_conditions != "", strsplit(cell_conditions, ",\\s*"),"")) %>%
+          dplyr::mutate(cell_types = ifelse(cell_types != "", strsplit(cell_types, ",\\s*"),""))
+      )
+      md$channels <- md$channels[[1]]
+      md$image_urls <- md$image_urls[[1]]
+      md$youtube_ids <- md$youtube_ids[[1]]
+      md$cell_conditions <- md$cell_conditions[[1]]
+      md$cell_types <- md$cell_types[[1]]
+      
       md.fn <- paste(makeFilename(meta[t,"title"]),"md",sep = ".") 
       con = file(file.path("../_trials",md.fn), "w")
       write("---", con)
