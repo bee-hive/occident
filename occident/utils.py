@@ -5,9 +5,9 @@ import json
 import skimage as sk
 import zipfile
 
-def load_data_local(filepath):
+def load_deepcell_object(filepath):
     """
-    Loads data from a zip file containing:
+    Loads data from a deepcell object zip file containing:
     - X.ome.tiff: Input image
     - y.ome.tiff: Output segmentation
     - cells.json: List of cell dictionaries
@@ -20,6 +20,7 @@ def load_data_local(filepath):
     - cells: List of cell dictionaries
     """
     f = zipfile.ZipFile(filepath, 'r')
+    # load the files from the zip file
     file_bytes = f.read("cells.json")
     with BytesIO() as b:
         b.write(file_bytes)
@@ -40,6 +41,7 @@ def load_data_local(filepath):
         b.write(file_bytes)
         b.seek(0)
         y = sk.io.imread(b, plugin="tifffile")
+    # return the deepcell object as a dictionary
     dcl_ob = {
         'X': np.expand_dims(X,3),
         'y': np.expand_dims(y,3),
