@@ -4,6 +4,7 @@ from io import BytesIO
 import json
 import skimage as sk
 import zipfile
+import scipy.stats
 
 def load_deepcell_object(filepath):
     """
@@ -48,3 +49,58 @@ def load_deepcell_object(filepath):
         'divisions':divisions,
         'cells': cells}
     return dcl_ob
+
+def mean_confidence_interval(data, confidence=0.95):
+    """
+    Calculate mean and confidence interval.
+
+    Parameters
+    ----------
+    data : array-like
+        The data to calculate the mean and confidence interval from.
+    confidence : float, optional
+        The confidence interval desired. Defaults to 0.95.
+
+    Returns
+    -------
+    mean : float
+        The mean of the data.
+    lower : float
+        The lower bound of the confidence interval.
+    upper : float
+        The upper bound of the confidence interval.
+    """
+    a = 1.0 * np.array(data)
+    n = np.count_nonzero(~np.isnan(a))  # Count non-NaN entries
+    if n == 0:
+        return np.nan, np.nan, np.nan  # Return NaN if all are NaNs
+    mean = np.nanmean(a)
+    se = scipy.stats.sem(a, nan_policy='omit')
+    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+    return mean, mean-h, mean+h
+
+def estimate_se(ci_lower, ci_upper):
+    """
+    Estimate the standard error (SE) from a given confidence interval.
+
+    Parameters
+    ----------
+    ci_lower : float
+        The lower bound of the confidence interval.
+    ci_upper : float
+        The upper bound of the confidence interval.
+
+    Returns
+    -------
+    se : float
+        The estimated standard error.
+
+    Notes
+    -----
+    The calculation is based on the formula for the standard error of the mean:
+
+        SE = (upper - lower) / (2 * 1.96)
+
+    where upper and lower are the upper and lower bounds of the confidence interval.
+    """
+    return (ci_upper - ci_lower) / (2 * 1.96)
