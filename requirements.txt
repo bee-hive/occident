@@ -5,3 +5,4 @@ pandas==2.1.4
 scipy==1.11.4
 scikit-image==0.23.2
 tifffile==2024.5.10
+notebook==7.0.8

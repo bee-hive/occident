@@ -114,13 +114,3 @@ def get_markov(t_boxes, c_boxes, tmax, cmax, t0=1, c0=1, max_time=350):
         is_tracked[t1, c1] += t_boxes[time + 1, box, 2]
 
     return markov, is_tracked
-
-def norm_markov(markov):
-    """
-    Normalize the Markov transition matrix by dividing each element by the sum of the matrix.
-    Args:
-        markov (numpy.ndarray): The Markov transition matrix to normalize.
-    Returns:
-        numpy.ndarray: The normalized Markov transition matrix.
-    """
-    return markov / np.sum(markov)
