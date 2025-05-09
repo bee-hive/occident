@@ -30,3 +30,21 @@ All core functions are found within the `occident` package. This package is spli
 from occident.utils import *
 from occident.markov import get_box_wise_counts
 ```
+
+### Expected data format
+
+Occident currently expects deepcell segmentation + tracking data as a zip file with the following items:
+
+- `X.ome.tiff`: Input images
+    - Raw intensities (generally in the range [0, 255]) of shape (channels, frames, height, width)
+- `y.ome.tiff`: Segmentation mask
+    - Cell mask of shape (cell_type, frames, height, width). The values in the arrays correspond to the cell_id, which are linked across frames. For T cell vs cancer cell co-cultures, it is standard that the 0 in the first dimension corresponds to T-cells and the 1 in the first dimension corresponds to cancer cells.
+- `cells.json`: List of cell dictionaries (not used by occident)
+- `divisions.json`: List of division dictionaries (not used by occident)
+
+Cell division events are provided to occident functions through a separate `div.pkl` file for each well. The `div.pkl` file is a pandas dataframe with columns:
+- parent: Parent cell id
+- daugher_1: First daughter cell id
+- daughter_2: Second daughter cell id
+- frame: Frame of the cell division event
+Each row corresponds to a unique cell division event. The cell ids and frame numbers correspond to those specified in the `y.ome.tiff` cell mask.

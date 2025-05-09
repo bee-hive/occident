@@ -6,7 +6,7 @@ import skimage as sk
 import zipfile
 import scipy.stats
 
-def load_deepcell_object(filepath):
+def load_deepcell_object(filepath, expand_dim=3):
     """
     Loads data from a deepcell object zip file containing:
     - X.ome.tiff: Input image
@@ -42,10 +42,14 @@ def load_deepcell_object(filepath):
         b.write(file_bytes)
         b.seek(0)
         y = sk.io.imread(b, plugin="tifffile")
-    # return the deepcell object as a dictionary
+    # if expand_dim is not None, expand the dimensions of X and y
+    if expand_dim is not None:
+        X = np.expand_dims(X, expand_dim)
+        y = np.expand_dims(y, expand_dim)
+     # return the deepcell object as a dictionary
     dcl_ob = {
-        'X': np.expand_dims(X,3),
-        'y': np.expand_dims(y,3),
+        'X': X,
+        'y': y,
         'divisions':divisions,
         'cells': cells}
     return dcl_ob
