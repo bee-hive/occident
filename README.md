@@ -1,4 +1,4 @@
-# occident2
+# occident
 
 Occident is a tool for analyzing live-cell imaging data of cancer-vs-T cell in vitro screens. 
 
