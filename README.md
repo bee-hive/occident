@@ -24,11 +24,12 @@ After installing these dependencies, you should be able to lauch jupyter from th
 
 ### General usage
 
-All core functions are found within the `occident` package. This package is split into subpackages for different categories of analysis. Individual functions from these subpackages can be imported as long as the `occident` conda environment is activated, regardless of whether the python file is located in the `occident` folder or not.
+All core functions are found within the `occident` package. This package is split into subpackages for different categories of analysis. Individual functions from these subpackages can be imported as long as the `occident` conda environment is activated, regardless of whether the python file is located in the `occident` folder or not. Here are some ways you can import occident:
 
 ```
 from occident.utils import *
 from occident.markov import get_box_wise_counts
+import occident as oc
 ```
 
 ### Expected data format
@@ -48,3 +49,7 @@ Cell division events are provided to occident functions through a separate `div.
 - daughter_2: Second daughter cell id
 - frame: Frame of the cell division event
 Each row corresponds to a unique cell division event. The cell ids and frame numbers correspond to those specified in the `y.ome.tiff` cell mask.
+
+### Citing occident
+
+If you use occident, please cite the following paper: https://doi.org/10.1101/2024.11.19.624390. Code used to generate this paper is available at https://github.com/bee-hive/Occident-Paper and https://github.com/vanvalenlab/Caliban-2024_Schwartz_et_al.

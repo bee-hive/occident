@@ -1,32 +1,9 @@
 import os
-import sys
 import re
-import json
 from typing import Optional
-import socket
-from datetime import datetime
-import pytz
 import numpy as np
-from concurrent.futures import ProcessPoolExecutor, as_completed
 import pandas as pd
-from matplotlib import pyplot as plt
-import seaborn as sns
-from io import BytesIO
-import scipy.stats
-import itertools
-import math
-import tarfile
-from scipy.ndimage import find_objects
 from scipy.ndimage import label
-from scipy.stats import sem, ttest_ind_from_stats, norm
-from scipy.stats import linregress
-from skimage.morphology import square, binary_erosion, binary_dilation
-from skimage.morphology import remove_small_objects
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-import skimage as sk
-import zipfile
-import tifffile
 
 
 def load_data_into_dataframe(data_path):
